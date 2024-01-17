@@ -16,7 +16,7 @@ export default function Cart()
     var mobileno = location?.state?.mobileno
     var status = location?.state?.status
     var userData = location?.state?.user 
-    alert(JSON.stringify(userData))
+    // alert(JSON.stringify(userData))
     
     var navigate=useNavigate()
     var cart=useSelector(state=>state.mycart)

@@ -20,35 +20,37 @@ const useStyles = makeStyles({
     }
 });
 
-function ProductInfo() {
+function ProductInfo(props) {
     const classes=useStyles()
     const matches=useMediaQuery('(max-width:800px)')
     const matches_sm=useMediaQuery('(max-width:400px)')
+    var item=props.item 
+    console.log(item)
 
     return (
         <div style={{width:matches?'100%':'90%'}}>
             <div style={{ width: '100%', display: 'flex' }}>
                 <div style={{ width: matches_sm?'50%':'30%', display: 'flex', justifyContent: 'center',alignItems:'center' }}>
-                    <img src={`${serverURL}/images/p5.webp`} height="85%" width="85%" ></img>
+                    <img src={`${serverURL}/images/${item.mainpicture}`} height="85%" width="85%" ></img>
                 </div>
                 <div style={{ width:matches_sm?'50%':'70%', color: '#fff',display:'flex',flexDirection:'column',justifyContent:'center'}}>
                     <div style={{ display: 'flex' }}>
                         <div style={{ fontSize:matches?'14px':'1.4vw', fontWeight: 500 }} className={classes.truncate}>
-                            VOLTAS 183V Vectra Platina 4 in 1 Convertible 1.5 Ton 3 Star Inverter Split AC with Anti Dust Filter (2023 Model, Copper Condenser)
+                            {item.brandname} {item.productname} {item.modelno} 
                         </div>
                         <div>
                             <Checkbox style={{ color: '#fff' }} icon={<FavoriteBorder />} checkedIcon={<Favorite />} />
                         </div>
                     </div>
                     <div style={{ fontSize: matches?'14px':'1.7vw', fontWeight: 500,marginTop:matches?'10px':0}}>
-                        &#8377;32,990
+                        &#8377;{item.offerprice}
                     </div>
                     <div style={{ fontSize: 12 }}>
                         (Incl. all Taxes)
                     </div>
                     <div style={{marginTop:'2%'}}>
-                        <span style={{ color: '#9A9A9A', fontSize: matches?'12px':'14px',textDecoration:'line-through' }}>MRP:&#8377;63,990</span>
-                        <span style={{ color: '#9A9A9A', fontSize: matches?'10px':'12px', marginLeft: '2%' }}>(Save &#8377;31,000)</span>
+                        <span style={{ color: '#9A9A9A', fontSize: matches?'12px':'14px',textDecoration:'line-through' }}>MRP:&#8377;{item.price}</span>
+                        <span style={{ color: '#9A9A9A', fontSize: matches?'10px':'12px', marginLeft: '2%' }}>(Save &#8377;{item.price-item.offerprice})</span>
                         <span style={{ fontSize: matches_sm?'9px':matches?'12px':'14px', border: '0.5px solid grey', borderRadius: '5px', background: '#191919', padding: matches_sm?'3px 4px 3px 5px':'7px 10px 7px 11px', marginLeft: '2%', fontWeight:'bold' }}>
                             48% Off
                         </span>

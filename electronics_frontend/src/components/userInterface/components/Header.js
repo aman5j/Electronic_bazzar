@@ -87,15 +87,15 @@ export default function Header(props)
             <AppBar position="static" style={{background: 'url(https://media.croma.com/image/upload/v1697816449/Croma%20Assets/CMS/LP%20Page%20Banners/2023/Desktop_-_Navratri_opt.3_glsdyl.jpg)'}}>
                 <Toolbar>
                     <div style={{width:300,display:'flex',justifyContent:'right'}}>
-                    <img src={Logo} width="150" />
+                    <img onClick={()=>navigate('/home')} style={{cursor:'pointer'}} src={Logo} width="150" />
                     </div>
                     { matches?<></>:
                     <div style={{marginLeft:'12%',width:'48%'}}>
                         {<SearchComponent/>}
                     </div>
                     }
-                    <div style={{marginLeft:matches?100:0, display:'flex', width:100, justifyContent:'space-between'}}>
-                      <div style={{display:'flex',flexDirection:'column'}}>
+                    <div style={{marginLeft:matches?100:0, display:'flex', width:120, justifyContent:'space-between'}}>
+                      <div style={{display:'flex',flexDirection:'column',justifyContent:'center',alignItems:'center'}}>
                         <AccountCircle style={{fontSize:30}}  />
                         <div style={{fontSize:8,color:'#fff'}}>{userData?.username}</div>
                       </div>

@@ -2,10 +2,11 @@ import { Button,Fab } from "@mui/material";
 import { useEffect, useState } from "react";
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
+import { useNavigate } from "react-router-dom";
 
 export default function PlusMinusComponent(props)
 {
-    
+    var navigate = useNavigate()
     const [count, setCount] = useState(0)
 
     useEffect(function(){
@@ -49,7 +50,7 @@ export default function PlusMinusComponent(props)
         
         </div>
         {props.screen=='cart'?<></>:
-         <Button  style={{ height:40, marginLeft: '10px', color: '#191919', borderColor: '#353535', background: '#12daa8', borderRadius: 10, fontWeight: 'bold', textTransform: 'none' }} variant="outlined">Continue Shoping</Button>}
+         <Button onClick={()=>navigate('/home')}  style={{ height:40, cursor:'pointer', marginLeft: '10px', color: '#191919', borderColor: '#353535', background: '#12daa8', borderRadius: 10, fontWeight: 'bold', textTransform: 'none' }} variant="outlined">Continue Shoping</Button>}
 
         </div>}
     </div>)

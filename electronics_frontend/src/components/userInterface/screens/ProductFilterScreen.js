@@ -1,18 +1,29 @@
-import Header from "../Header"
+import Header from "../components/Header"
 import { useStyles } from "./ProjectCss"
-import FeaturedComponent from "../FeaturedComponent"
-import CategoriesComponent from "../CategoriesComponent"
-import PriceComponent from "../PriceComponent"
-import BrandComponent from "../BrandComponent"
-import ProductInfo from "../ProductInfo"
+import FeaturedComponent from "../components/FeaturedComponent"
+import CategoriesComponent from "../components/CategoriesComponent"
+import PriceComponent from "../components/PriceComponent"
+import BrandComponent from "../components/BrandComponent"
+import ProductInfo from "../components/ProductInfo"
 import { useMediaQuery } from "@mui/material"
 import FilterListIcon from '@mui/icons-material/FilterList';
 import ListIcon from '@mui/icons-material/List'
+import { useLocation } from "react-router-dom"
 
 function ProductFilterScreen() {
     const classes = useStyles()
+    var location = useLocation()
+    var data = location?.state?.result
+    
     const matches=useMediaQuery('(max-width:800px)')
     const matches_sm=useMediaQuery('(max-width:400px)')
+
+    const showProducts=()=>{
+        return data.map((item)=>{
+            return <ProductInfo item={item} />
+        })
+    }
+
     return (
         <div className={classes.ProductScreen_Root}>
             <div style={{ position: 'sticky', top: 0, zIndex: 2 }}>
@@ -39,15 +50,7 @@ function ProductFilterScreen() {
                     <div style={{ display: 'flex', justifyContent: 'space-between', color: '#fff', fontSize: matches_sm?'4vw':matches?'3vw':'2vw', marginLeft: '0.5%', marginTop: '0.5%', fontWeight: 500 }}>
                         Best Deals on ACs
                     </div>
-                    <ProductInfo />
-                    <ProductInfo />
-                    <ProductInfo />
-                    <ProductInfo />
-                    <ProductInfo />
-                    <ProductInfo />
-                    <ProductInfo />
-                    <ProductInfo />
-                    <ProductInfo />
+                    {showProducts()}
                 </div>
             </div>
             {matches?

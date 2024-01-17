@@ -206,6 +206,28 @@ router.post('/order_submit', function(req, res, next) {
     }
   });
   
+
+router.post('/product_filter', function(req, res, next) {
+    try{
+        // var q=`select P.*, PD.* from productdetails PD, products P where PD.productid=P.productid and PD.modelno like '%${req.body.text}%' or P.productname like '%${req.body.text}%' `
+        var q=`select P.productname,P.picture as mainpicture, PD.*, B.* from productdetails PD, products P, brands B where B.brandid=P.brandid and B.brandid=PD.brandid and  B.categoryid=P.categoryid and B.categoryid=PD.categoryid and PD.productid=P.productid and (PD.modelno like '%${req.body.text}%' or P.productname like '%${req.body.text}%' or B.brandname like '%${req.body.text}%') `
+        console.log(q)
+        pool.query(q,[req.body.text], function(error,result){
+            if(error)
+            {   console.log("Database Error:",error)
+                res.status(200).json({status:false,message:'Database Error, pls contact database admin'})
+            }
+            else 
+            {   console.log(result)
+                res.status(200).json({status:true, data:result, message:'success'})
+            }
+        })
+    }
+    catch(e)
+    {   console.log("Server Error:",e)
+        res.status(200).json({status:false,message:'Server Error...'})
+    }
+});
   
 
 module.exports = router;

@@ -10,6 +10,7 @@ import ProductPurchaseScreen from "./components/userInterface/screens/ProductPur
 import Cart from "./components/userInterface/screens/Cart";
 import OtpComponent from "./components/userInterface/users/OtpComponent";
 import Shopping from "./components/userInterface/screens/Shopping";
+import ProductFilterScreen from "./components/userInterface/screens/ProductFilterScreen";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
           <Route element={<Cart/>} path="/cart" />
           <Route element={<OtpComponent/>} path="/otp" />
           <Route element={<Shopping/>} path="/useraccount" />
+          <Route element={<ProductFilterScreen/>} path="/productfilterscreen" />
 
 
 

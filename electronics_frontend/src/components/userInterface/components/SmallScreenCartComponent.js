@@ -1,21 +1,9 @@
-import { Grid,FormControl,InputLabel,Select,MenuItem, Divider,object} from "@mui/material";
+import { Grid,FormControl} from "@mui/material";
 import * as React from 'react';
 import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
 import { postData, serverURL } from "../../../services/FetchNodeServices";
-import Slider from "react-slick";
-import Rating from '@mui/material/Rating';
 import "slick-carousel/slick/slick.css";
-import { makeStyles } from "@mui/styles";
-import Favorite from '@mui/icons-material/Favorite';
-import useMediaQuery from '@mui/material/useMediaQuery';
-import { useTheme } from '@mui/material/styles';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import "slick-carousel/slick/slick-theme.css";
-import PlaceIcon from '@mui/icons-material/Place';
-import PublishedWithChangesIcon from '@mui/icons-material/PublishedWithChanges';
-import AllOutIcon from '@mui/icons-material/AllOut';
-import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormLabel from '@mui/material/FormLabel';
@@ -24,11 +12,12 @@ import AssignmentTurnedInIcon from '@mui/icons-material/AssignmentTurnedIn';
 import LoginComponent from "../users/LoginComponent";
 import { useState } from "react";
 import useRazorpay from "react-razorpay";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 export default function SmallScreenCartComponent(props)
 {   var navigate=useNavigate()
+    var dispatch=useDispatch()
     var data=props.productCart
     var user=useSelector(state=>state.user);
     var userData=Object.values(user)[0]
@@ -102,7 +91,7 @@ export default function SmallScreenCartComponent(props)
     const handleClick=()=>{
       var userData = JSON.parse(localStorage.getItem('User'))
       if(userData)
-      { 
+      { dispatch({type:"ADD_USER",payload:[userData.mobileno,userData]})
         navigate('/useraccount',{state:{mobileno:userData.mobileno,user:[userData],status:true}})
       }
       else 
